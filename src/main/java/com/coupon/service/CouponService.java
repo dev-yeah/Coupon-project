@@ -57,7 +57,7 @@ public class CouponService {
 	}
 
 	
-	public EmailResponse checkEmailValid(String email) {
+	public EmailResponse checkEmailValid(String email) throws Exception {
 
 		EmailResponse response = new EmailResponse();
 		
