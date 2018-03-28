@@ -1,5 +1,7 @@
+## NodeJS
+node_modules
+
 .gradle
-/build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -20,6 +22,7 @@
 ### NetBeans ###
 nbproject/private/
 build/
+!frontend/build
 nbbuild/
 dist/
 nbdist/
