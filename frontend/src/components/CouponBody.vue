@@ -89,7 +89,7 @@ export default {
       this.$axios.get(this.apiUrl + this.form.email, {
         email: this.form.email
       }).then(function (response) {
-        if (response.data.validEmail) {
+        if (response.data.valid) {
           swal({
             title: 'Would you like to get a coupon?',
             text: 'Press OK to issue a coupon!',

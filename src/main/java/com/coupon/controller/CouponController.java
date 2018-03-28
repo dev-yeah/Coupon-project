@@ -81,7 +81,7 @@ public class CouponController {
 			logger.error("Duplicate coupon values could not be entered. error message : {}", e.getMessage());
 			return new ResponseEntity<CouponResponse>(couponResponse, HttpStatus.CONFLICT);
 		} catch (Throwable th) {
-			logger.error("throwable message : {}", th.getMessage());
+			logger.error("throwable message : {}", th.getMessage(), th);
 			return new ResponseEntity<CouponResponse>(couponResponse, HttpStatus.NOT_FOUND);
 		}
 

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.coupon.dto.CouponEntity;
 
@@ -21,6 +22,6 @@ public interface CouponRepository extends JpaRepository<CouponEntity, String>{
 	@Query(value = "SELECT COUPON_CODE FROM COUPON_BOOK", nativeQuery = true)
 	List<String> getAllCoupon();
 	
-	@Query(value = "SELECT COUPON_CODE FROM COUPON_BOOK WHERE COUPON_CODE=?", nativeQuery = true)
-	String getCouponByCode(String couponCode);
+	@Query(value = "SELECT COUPON_CODE FROM COUPON_BOOK WHERE COUPON_CODE=:coupon", nativeQuery = true)
+	String getCouponByCode(@Param("coupon") String couponCode);
 }

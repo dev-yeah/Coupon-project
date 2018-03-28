@@ -76,12 +76,19 @@ public class CouponService {
 	}
 
 	@Transactional
-	public CouponResponse issueCoupon(String email) {
+	public CouponResponse issueCoupon(String email) throws Exception {
 
 		CouponResponse response = new CouponResponse();
 		CouponEntity couponEntity = new CouponEntity();
 		
 		String coupon, isExist;
+
+		// 한번 더 체크해주는 건, 똑같은 email에 대해 validation check를 한 후, 발급할 때 텀이 존재. 먼저 추가한 사용자는
+		// 등록되고 이후에 추가한 사용자는 등록이 안됐다고 alert를 줘야 할 듯
+		boolean isValid = (couponRepository.existsById(email)) ? false : true;
+		if(!isValid) {
+			throw new DuplicateKeyException("Duplicate email address.");
+		}
 		
 		do {
 			coupon = makeUniqueCoupon();
@@ -90,16 +97,16 @@ public class CouponService {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-		try {
-			couponRepository.save(couponEntity);
-		} catch (DuplicateKeyException e) {
-			throw new DuplicateKeyException("Duplicate email address.", e);
-		}
-
 		couponEntity.setId(id++);
 		couponEntity.setEmail(email);
 		couponEntity.setCouponCode(coupon);
 		couponEntity.setIssueDttm(formatter.format(new Date()));
+		try {
+			couponRepository.save(couponEntity);
+		} catch (Exception e) {
+			throw new Exception("An error occurred while handling data.", e);
+		}
+
 
 		logger.info("Coupon Information :: {}", couponEntity.toString());
 		
