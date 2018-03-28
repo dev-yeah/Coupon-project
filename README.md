@@ -52,3 +52,5 @@ cd Coupon-project/frontend
 npm run dev
 ```
 
+## 개선사항(After plan)
+* Unit Test 코드개선
