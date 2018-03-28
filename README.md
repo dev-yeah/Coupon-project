@@ -29,12 +29,6 @@
 ## 프로젝트 빌드 및 실행 방법 (Build & Run)
 
 ### Installation
-* Build back-end environment
-```
-cd Coupon-project
-gradle build
-```
-
 * Build front-end environment
 
 ```
