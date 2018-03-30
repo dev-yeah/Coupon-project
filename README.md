@@ -54,3 +54,4 @@ npm run dev
 
 ## 개선사항(After plan)
 * Unit Test 코드개선
+* email check할 때 bloomfilter사용해 성능 향상
